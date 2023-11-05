@@ -33,7 +33,7 @@ def test_generic_converters(expect):
             paired = zip(cls.CONVERTERS, values)  # type: ignore
             return [convert.to_preserialization_data(val) for convert, val in paired]
 
-    @datafile("../tmp/sample.yml")
+    @datafile("../tmp/sample.json")
     class Dictish:
         contents: List[Pair[str, converters.Number]]
 

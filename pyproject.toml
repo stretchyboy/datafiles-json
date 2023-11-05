@@ -43,10 +43,6 @@ classifiers = [
 
 python = "^3.8"
 
-# Formats
-"ruamel.yaml" = "^0.17.21"
-tomlkit = "^0.10.1"
-
 # ORM
 parse = "^1.12"
 

@@ -12,7 +12,7 @@ from datafiles.converters import Number, Text
 from datafiles.utils import dedent, read, write
 
 
-@datafile("../tmp/sample.yml")
+@datafile("../tmp/sample.json")
 class Sample:
     number: Number = Number(0)
     text: Text = Text("")
@@ -26,7 +26,7 @@ def describe_number():
     def with_float_to_integer(sample, expect):
         sample.number = 1.23
 
-        expect(read("tmp/sample.yml")) == dedent(
+        expect(read("tmp/sample.json")) == dedent(
             """
             number: 1.23
             """
@@ -34,7 +34,7 @@ def describe_number():
 
         sample.number = 4
 
-        expect(read("tmp/sample.yml")) == dedent(
+        expect(read("tmp/sample.json")) == dedent(
             """
             number: 4
             """
@@ -42,7 +42,7 @@ def describe_number():
 
     def with_integer_to_float(sample, expect):
         write(
-            "tmp/sample.yml",
+            "tmp/sample.json",
             """
             number: 5
             """,
@@ -51,7 +51,7 @@ def describe_number():
         expect(sample.number) == 5
 
         write(
-            "tmp/sample.yml",
+            "tmp/sample.json",
             """
             number: 6.78
             """,
@@ -68,7 +68,7 @@ def describe_text():
     def with_single_line(sample, expect):
         sample.text = "Hello, world!"
 
-        expect(read("tmp/sample.yml")) == dedent(
+        expect(read("tmp/sample.json")) == dedent(
             """
             text: Hello, world!
             """
@@ -77,7 +77,7 @@ def describe_text():
     def with_multiple_lines(sample, expect):
         sample.text = "\n".join(f"Line {i+1}" for i in range(3))
 
-        expect(read("tmp/sample.yml")) == dedent(
+        expect(read("tmp/sample.json")) == dedent(
             """
             text: |
               Line 1
@@ -87,7 +87,7 @@ def describe_text():
         )
 
         write(
-            "tmp/sample.yml",
+            "tmp/sample.json",
             """
             text: |
               Line 4
@@ -101,7 +101,7 @@ def describe_text():
     def with_extra_newlines(sample, expect):
         sample.text = "\nabc\ndef\n\n"
 
-        expect(read("tmp/sample.yml")) == dedent(
+        expect(read("tmp/sample.json")) == dedent(
             """
             text: |
               abc

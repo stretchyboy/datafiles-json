@@ -1,3 +1,4 @@
+'''
 """Tests for loading from a file."""
 
 # pylint: disable=unused-variable
@@ -507,3 +508,4 @@ def describe_sets():
         logbreak()
 
         expect(sample.items) == {_FrozenNestedSample1(name="abc", score=0.0)}
+'''

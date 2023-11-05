@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Iterator, Optional
 
 import log
 from parse import parse
-from ruamel.yaml.error import MarkedYAMLError
+#from ruamel.yaml.error import MarkedYAMLError
 
 from . import hooks, model
 
@@ -76,7 +76,8 @@ class Manager:
 
             try:
                 instance.datafile.load(_first_load=True)
-            except MarkedYAMLError as e:
+            #except MarkedYAMLError as e:
+            except Exception as e:
                 log.critical(
                     f"Deleting invalid YAML: {instance.datafile.path} ({e.problem})"
                 )

@@ -1,4 +1,7 @@
-# Datafiles: A file-based ORM for Python dataclasses
+# Datafiles JSON : A JSON file-based ORM for Python dataclasses
+
+This is a remix of Datafiles to try and make it work in Circuit Python
+
 
 Datafiles is a bidirectional serialization library for Python [dataclasses](https://docs.python.org/3/library/dataclasses.html) to synchronize objects to the filesystem using type annotations. It supports a variety of file formats with round-trip preservation of formatting and comments, where possible. Object changes are automatically saved to disk and only include the minimum data needed to restore each object.
 
@@ -44,7 +47,7 @@ and decorate it with a directory pattern to synchronize instances:
 ```python
 from datafiles import datafile
 
-@datafile("inventory/items/{self.name}.yml")
+@datafile("inventory/items/{self.name}.json")
 class InventoryItem:
     ...
 ```
@@ -56,9 +59,8 @@ Then, work with instances of the class as normal:
 ```
 
 ```yaml
-# inventory/items/widget.yml
-
-unit_price: 3.0
+# inventory/items/widget.json
+{"unit_price": 3.0}
 ```
 
 Changes to the object are automatically saved to the filesystem:
@@ -68,19 +70,22 @@ Changes to the object are automatically saved to the filesystem:
 ```
 
 ```yaml
-# inventory/items/widget.yml
+# inventory/items/widget.json
 
-unit_price: 3.0
-quantity_on_hand: 100
+{
+    "unit_price": 3.0,
+    "quantity_on_hand": 100
+}
 ```
 
 Changes to the filesystem are automatically reflected in the object:
 
-```yaml
-# inventory/items/widget.yml
-
-unit_price: 2.5 # <= manually changed from "3.0"
-quantity_on_hand: 100
+```json
+# inventory/items/widget.json
+{
+    "unit_price": 2.5, 
+    "quantity_on_hand": 100
+}
 ```
 
 ```python

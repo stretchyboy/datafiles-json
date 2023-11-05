@@ -6,9 +6,9 @@ from inspect import isclass
 from typing import Any, Dict, Mapping, Optional, Union
 
 import log
-from ruamel.yaml.comments import CommentedMap
-from ruamel.yaml.scalarfloat import ScalarFloat
-from ruamel.yaml.scalarstring import DoubleQuotedScalarString
+#from ruamel.yaml.comments import CommentedMap
+#from ruamel.yaml.scalarfloat import ScalarFloat
+#from ruamel.yaml.scalarstring import DoubleQuotedScalarString
 
 from ..utils import cached, subclasses
 from ._bases import Converter
@@ -29,11 +29,11 @@ def register(cls: Union[type, str], converter: type):
 
 register(Integer.TYPE, Integer)
 register(Float.TYPE, Float)
-register(ScalarFloat, Float)
+#register(ScalarFloat, Float)
 register(Boolean.TYPE, Boolean)
 register(String.TYPE, String)
-register(DoubleQuotedScalarString, String)
-register(CommentedMap, Dictionary)
+#register(DoubleQuotedScalarString, String)
+#register(CommentedMap, Dictionary)
 register(list, List)
 register(dict, Dictionary)
 

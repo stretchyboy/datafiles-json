@@ -5,7 +5,7 @@ from datafiles import datafile
 from datafiles.utils import logbreak
 
 
-@datafile("../tmp/{self.name}.yml", infer=True)
+@datafile("../tmp/{self.name}.json", infer=True)
 class Sample:
     name: str
 

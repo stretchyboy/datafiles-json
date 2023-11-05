@@ -9,12 +9,12 @@ from datafiles import datafile
 from datafiles.utils import logbreak, write
 
 from . import xfail_with_pep_563
-from .samples import SampleWithNestingAndOptionals
+#from .samples import SampleWithNestingAndOptionals
 
 
 # This model is based on the example dataclass from:
 # https://docs.python.org/3/library/dataclasses.html
-@datafile("../tmp/inventory/{self.pk}.yml")
+@datafile("../tmp/inventory/{self.pk}.json")
 class InventoryItem:
     pk: int
     name: str
@@ -65,7 +65,7 @@ def test_classes_can_share_a_nested_dataclass(expect):
     foo = Foo(Nested(1))
 
     expect(foo.nested.value) == 1
-
+'''
     @datafile("../tmp/sample.toml")
     class Bar:
         nested: Nested
@@ -87,7 +87,7 @@ def test_values_are_filled_from_disk(expect):
 
 def test_partial_load_from_disk(expect):
     write(
-        "tmp/inventory/42.yml",
+        "tmp/inventory/42.json",
         """
         name: Things"
         """,
@@ -101,7 +101,7 @@ def test_partial_load_from_disk(expect):
 
 def test_partial_nested_load_from_disk(expect):
     write(
-        "tmp/sample.yml",
+        "tmp/sample.json",
         """
             name: foo
             score: 7
@@ -138,7 +138,7 @@ def test_missing_optional_fields_are_loaded(expect):
 
 
 def test_comments_in_matched_files(expect):
-    @datafile("../tmp/templates/{self.key}/config.yml")
+    @datafile("../tmp/templates/{self.key}/config.json")
     class LegacyTemplate:
         key: str
         name: str
@@ -147,7 +147,7 @@ def test_comments_in_matched_files(expect):
         aliases: List[str]
 
     write(
-        "tmp/templates/foo/config.yml",
+        "tmp/templates/foo/config.json",
         """
         link: # placeholder
         default:
@@ -158,7 +158,7 @@ def test_comments_in_matched_files(expect):
         """,
     )
     write(
-        "tmp/templates/bar/config.yml",
+        "tmp/templates/bar/config.json",
         """
         link: http://example.com
         default:
@@ -174,26 +174,26 @@ def test_comments_in_matched_files(expect):
 
 
 def test_paths_in_pattern(expect):
-    @datafile("../tmp/routes/{self.path}/{self.variant}.yml")
+    @datafile("../tmp/routes/{self.path}/{self.variant}.json")
     class LegacyTemplate:
         path: str
         variant: str
         value: int
 
     write(
-        "tmp/routes/foo/public.yml",
+        "tmp/routes/foo/public.json",
         """
         value: 2
         """,
     )
     write(
-        "tmp/routes/foo/bar/public.yml",
+        "tmp/routes/foo/bar/public.json",
         """
         value: 2
         """,
     )
     write(
-        "tmp/routes/foo/bar/private.yml",
+        "tmp/routes/foo/bar/private.json",
         """
         value: 2
         """,
@@ -205,3 +205,5 @@ def test_paths_in_pattern(expect):
         expect(items[-1].path) == "foo\\bar"
     else:
         expect(items[-1].path) == "foo/bar"
+
+'''

@@ -53,7 +53,7 @@ class JSON(Formatter):
     def serialize(cls, data):
         return json.dumps(data, indent=2)
 
-
+'''
 class TOML(Formatter):
     """Formatter for (round-trip) Tom's Obvious Minimal Language."""
 
@@ -114,7 +114,7 @@ class YAML(Formatter):
 
         return text.replace("- \n", "-\n")
 
-
+'''
 def deserialize(path: Path, extension: str, *, formatter=None) -> Dict:
     if formatter is None:
         formatter = _get_formatter(extension)

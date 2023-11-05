@@ -30,7 +30,7 @@ class DateTimeConverter(converters.Converter):
 
 
 def test_extension(expect):
-    @datafile("../tmp/sample.yml")
+    @datafile("../tmp/sample.json")
     class Timestamp:
         dt: MyDateTime
 
@@ -45,7 +45,7 @@ def test_extension(expect):
 
 
 def test_extension_with_default(expect):
-    @datafile("../tmp/sample.yml")
+    @datafile("../tmp/sample.json")
     class Timestamp:
         dt: MyDateTime = None
 
@@ -63,7 +63,7 @@ def test_registration(expect):
 
     converters.register(datetime, DateTimeConverter)
 
-    @datafile("../tmp/sample.yml")
+    @datafile("../tmp/sample.json")
     class Timestamp:
         dt: datetime
 
@@ -81,7 +81,7 @@ def test_registration_with_default(expect):
 
     converters.register(datetime, DateTimeConverter)
 
-    @datafile("../tmp/sample.yml")
+    @datafile("../tmp/sample.json")
     class Timestamp:
         dt: datetime = None
 

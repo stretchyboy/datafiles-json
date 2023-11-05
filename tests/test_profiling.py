@@ -17,7 +17,7 @@ def get_sample():
         optional: Optional[int]
         default: int = 42
 
-    @datafile("../tmp/{self.key}.yml", defaults=True)
+    @datafile("../tmp/{self.key}.json", defaults=True)
     class Sample:
 
         key: str

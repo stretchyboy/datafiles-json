@@ -19,7 +19,7 @@ def describe_automatic():
 
     @pytest.fixture
     def sample():
-        @datafile("../tmp/{self.key}.yml")
+        @datafile("../tmp/{self.key}.json")
         class Sample:
             key: int
             name: str
@@ -35,7 +35,7 @@ def describe_automatic():
 
     def it_formats_path_from_pattern(expect, sample):
         root = Path(__file__).parents[1]
-        expect(sample.datafile.path) == root / "tmp" / "1.yml"
+        expect(sample.datafile.path) == root / "tmp" / "1.json"
 
     def it_converts_attributes(expect, sample):
         expect(sample.key) == 1
@@ -50,7 +50,7 @@ def describe_automatic_with_defaults():
     def describe_flat():
         @pytest.fixture
         def sample():
-            @datafile("../tmp/{self.key}.yml", defaults=True)
+            @datafile("../tmp/{self.key}.json", defaults=True)
             class Sample:
                 key: int
                 name: str
@@ -69,7 +69,7 @@ def describe_automatic_with_defaults():
                 name: str
                 score: float = 1 / 4
 
-            @datafile("../tmp/{self.key}.yml", defaults=True)
+            @datafile("../tmp/{self.key}.json", defaults=True)
             class Sample:
                 key: int
                 nested: Nested
@@ -97,7 +97,7 @@ def describe_automatic_with_defaults():
                 class Meta:
                     datafile_defaults = False
 
-            @datafile("../tmp/{self.key}.yml", defaults=True)
+            @datafile("../tmp/{self.key}.json", defaults=True)
             class Sample:
                 key: int
                 nested: Nested
@@ -185,7 +185,7 @@ def describe_manual_with_attrs_and_pattern():
 
             class Meta:
                 datafile_attrs = {"name": datafiles.converters.String}
-                datafile_pattern = "../tmp/{self.key}.yml"
+                datafile_pattern = "../tmp/{self.key}.json"
 
         return Sample(4, "d")
 
@@ -194,7 +194,7 @@ def describe_manual_with_attrs_and_pattern():
 
     def it_formats_path_from_pattern(expect, sample):
         root = Path(__file__).parents[1]
-        expect(sample.datafile.path) == root / "tmp" / "4.yml"
+        expect(sample.datafile.path) == root / "tmp" / "4.json"
 
     def it_converts_attributes(expect, sample):
         expect(sample.datafile.data) == {"name": "d"}
@@ -205,7 +205,7 @@ def describe_absolute_pattern():
 
     @pytest.fixture
     def sample():
-        @datafile("/private/tmp/{self.key}.yml")
+        @datafile("/private/tmp/{self.key}.json")
         class Sample:
             key: int
             name: str
@@ -215,4 +215,4 @@ def describe_absolute_pattern():
 
     @pytest.mark.skipif(sys.platform != "darwin", reason="Test only valid on macOS")
     def it_formats_path_from_pattern(expect, sample):
-        expect(sample.datafile.path) == Path("/private/tmp") / "5.yml"
+        expect(sample.datafile.path) == Path("/private/tmp") / "5.json"

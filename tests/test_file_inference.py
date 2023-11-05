@@ -1,5 +1,5 @@
 # pylint: disable=unused-variable
-
+'''
 import pytest
 
 from datafiles import auto
@@ -145,3 +145,5 @@ def describe_auto():
                 - else
             """
         )
+
+'''

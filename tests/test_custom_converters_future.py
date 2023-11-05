@@ -11,7 +11,7 @@ from datafiles import datafile
 
 
 def test_optional_type(expect):
-    @datafile("../tmp/sample.yml")
+    @datafile("../tmp/sample.json")
     class MyObject:
 
         # This will fail because the annotation is evaluated as 'Optional[int]'
@@ -27,7 +27,7 @@ def test_nested_type(expect):
     class Nested:
         pass
 
-    @datafile("../tmp/sample.yml")
+    @datafile("../tmp/sample.json")
     class MyObject:
         value1: int
 
