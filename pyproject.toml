@@ -1,0 +1,46 @@
+[tool.poetry]
+
+name = "datafiles"
+version = "2.2"
+description = "JSON File-based ORM for dataclasses."
+
+license = "MIT"
+
+authors = ["Jace Browning <jacebrowning@gmail.com>"]
+
+readme = "README.md"
+
+homepage = "https://pypi.org/project/datafiles"
+documentation = "https://datafiles.readthedocs.io"
+repository = "https://github.com/jacebrowning/datafiles"
+
+keywords = [
+    "dataclasses",
+    "serialization",
+    "type-annotations",
+    "object-relational mapping",
+    "JSON",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python",
+    "Topic :: Software Development",
+    "Topic :: Utilities",
+]
+
+[tool.poetry.dependencies]
+
+python = "^3.8"
+
+# ORM
+parse = "^1.12"
+
